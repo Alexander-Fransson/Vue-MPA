@@ -1,10 +1,6 @@
 import { defineStore } from "pinia";
 
-interface ITodos {
-    name: string,
-    done: boolean,
-    hidden: boolean
-}
+
 
 export const useItemStore = defineStore("ItemStore", {
     state: () => {
@@ -20,15 +16,17 @@ export const useItemStore = defineStore("ItemStore", {
         }
     },
     getters: {
-        chores: (state) => state.todos, 
+        count() : number {
+            return this.todos.length;
+        },
+        searchedFor: (state) => {
+            return (choreName : string) => state.todos.filter(chore => chore.name.includes(choreName));
+        }  
     },
     actions: {
-        searchChores(todo: string) {
-            this.todos.map(chore => {
-                if(!chore.name.includes(todo)){
-                    chore.hidden = true;
-                }
-            })
+        removeChore(choreName: string){
+            this.todos = this.todos.filter(chore => chore.name !== choreName);
+            console.log('remove');
         }
     }
 });
