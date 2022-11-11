@@ -1,7 +1,6 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
@@ -13,8 +12,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <RouterLink to="/"></RouterLink>
-  <RouterLink to="/todos"></RouterLink>
+  <RouterLink to="/"> Menu</RouterLink>
+  <p></p>
+  <RouterLink to="/todos">Todos</RouterLink>
   <RouterView></RouterView>
 </template>
 
