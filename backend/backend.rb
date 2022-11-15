@@ -27,4 +27,12 @@ class Backend < Sinatra::Base
         status 200
         return result.to_json
     end
+
+    post '/api/v1/todos' do
+        #försöker skapa en post request.
+        payload = JSON.parse(request.body.read)
+        todos = db.execute('INSERT INTO todos (name, done, hidden) VALUES(?,?,?)', [payload['name'], payload['done'], payload['hidden']])
+        status = 200
+        return todos.to_json
+    end
 end

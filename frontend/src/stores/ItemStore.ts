@@ -30,6 +30,10 @@ export const useItemStore = defineStore("ItemStore", {
             const response = await request.json();
             this.todos = response;
             console.log('filling'); 
+        },
+        async add(todoItem: ITodo){
+            console.log('adding '+todoItem.name);
+            //const request = await fetch()
         }
     }
 });
