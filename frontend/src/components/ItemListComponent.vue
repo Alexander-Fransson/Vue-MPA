@@ -3,6 +3,7 @@ import { useItemStore } from '../stores/ItemStore';
 import ItemComponentVue from './ItemComponent.vue';
 
 const store = useItemStore();
+store.fill();
 const todos = store.todos;
 
 </script>

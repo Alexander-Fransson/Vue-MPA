@@ -27,6 +27,12 @@ export const useItemStore = defineStore("ItemStore", {
         removeChore(choreName: string){
             this.todos = this.todos.filter(chore => chore.name !== choreName);
             console.log('remove');
+        },
+        async fill(){
+            const request = await fetch('http://localhost:9292/api/v1/todos');
+            const response = await request.json();
+            this.todos = response;
+            console.log('filling'); 
         }
     }
 });
