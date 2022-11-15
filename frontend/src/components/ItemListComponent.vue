@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useItemStore } from '../stores/ItemStore'; 
+import { useItemStore } from '../stores/ItemStore';
+import { storeToRefs } from 'pinia'; 
 import ItemComponentVue from './ItemComponent.vue';
 
-const store = useItemStore();
-store.fill();
-const todos = store.todos;
+const storeRef = storeToRefs(useItemStore());
+const todos = storeRef.todos;
 
 </script>
 <template>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useItemStore } from './stores/ItemStore';
+const store = useItemStore();
+store.fill();
 </script>
 
 <template>

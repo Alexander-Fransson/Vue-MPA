@@ -1,18 +1,15 @@
 import { defineStore } from "pinia";
 
-
+interface ITodo{
+    name: string,
+    done: boolean,
+    hidden: boolean
+}
 
 export const useItemStore = defineStore("ItemStore", {
     state: () => {
         return {
-            todos: [
-                {name: 'programming', done: false, hidden: false},
-                {name: 'philosophise', done: false, hidden: false},
-                {name: 'buy shoes', done: false, hidden: false},
-                {name: 'visit grandma', done: false, hidden: false},
-                {name: 'practise drivig', done: false, hidden: false},
-                {name: 'work on AF-bravour', done: false, hidden: false}
-            ],
+            todos: [] as ITodo[],
         }
     },
     getters: {
@@ -24,8 +21,8 @@ export const useItemStore = defineStore("ItemStore", {
         }  
     },
     actions: {
-        removeChore(choreName: string){
-            this.todos = this.todos.filter(chore => chore.name !== choreName);
+        async removeChore(choreName: string){
+            this.todos = await this.todos.filter(chore => chore.name !== choreName);
             console.log('remove');
         },
         async fill(){
