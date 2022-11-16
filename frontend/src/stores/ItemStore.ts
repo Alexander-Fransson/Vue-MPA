@@ -23,6 +23,10 @@ export const useItemStore = defineStore("ItemStore", {
     actions: {
         async removeChore(choreName: string){
             this.todos = await this.todos.filter(chore => chore.name !== choreName);
+            console.log(choreName);
+            await fetch(`http://localhost:9292/api/v1/todos/${choreName}`,{
+                method:'DELETE',
+            });
             console.log('remove');
         },
         async fill(){
@@ -33,7 +37,16 @@ export const useItemStore = defineStore("ItemStore", {
         },
         async add(todoItem: ITodo){
             console.log('adding '+todoItem.name);
-            //const request = await fetch()
+            const request = await fetch('http://localhost:9292/api/v1/todos', {
+                method:'POST',
+                mode: 'cors',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(todoItem)
+            });
+            const response = await request;
+            console.log(response);
         }
     }
 });

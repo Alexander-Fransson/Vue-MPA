@@ -28,11 +28,20 @@ class Backend < Sinatra::Base
         return result.to_json
     end
 
+    #sqlite kan inte hantera booleans
     post '/api/v1/todos' do
         #försöker skapa en post request.
         payload = JSON.parse(request.body.read)
-        todos = db.execute('INSERT INTO todos (name, done, hidden) VALUES(?,?,?)', [payload['name'], payload['done'], payload['hidden']])
+        print payload     
+        todos = db.execute('INSERT INTO todos (name, done, hidden) VALUES(?,?,?)', [payload['name'], 0, 0])
         status = 200
-        return todos.to_json
+        return 'success';
+    end
+
+    delete '/api/v1/todos/:name' do
+        print 'poot'
+        print params;
+        print 'not poot'
+        todos = db.execute('DELETE FROM todos WHERE name = ?', params[:name]);
     end
 end
