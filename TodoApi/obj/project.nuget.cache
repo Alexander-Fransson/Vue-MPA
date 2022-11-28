@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "DqK/KhqSUdXwMuQifvfq38P2phwQMbGzc3Pm7/mFCgB7xN5IJd++TlK0bI/IZkAJc5GW6InJZXG+h3Km7/IDFA==",
+  "success": true,
+  "projectFilePath": "/Users/alexander.fransson/Documents/GitHub/Vue-MPA/TodoApi/TodoApi.csproj",
+  "expectedPackageFiles": [
+    "/Users/alexander.fransson/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/alexander.fransson/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/alexander.fransson/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/alexander.fransson/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/alexander.fransson/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/alexander.fransson/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
