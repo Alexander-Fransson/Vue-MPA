@@ -13,12 +13,7 @@ export const useTodoStore = defineStore('TodoStore', {
         }
     },
     getters: {
-        async getNewId(): Promise<number> {
-            const req = await fetch('http://localhost:5097/api/TodoItems')
-            const res = await req.json()
-            this.thingsTodo = res;
-            return res.length + 1
-        }
+        
     },
     actions: {
         async refillStore() {
@@ -30,7 +25,7 @@ export const useTodoStore = defineStore('TodoStore', {
         async addThingTodo(thingTodo: string) {
 
             const body = {
-                id: await this.getNewId,
+                id: this.thingsTodo.length + 1,
                 name: thingTodo,
                 done: false
             }

@@ -7,28 +7,33 @@
     const input = ref('');
 
     const onSubmit = (thingTodo: string) => {
-        console.log('click');
-        todos.addThingTodo(input.value);
-        input.value = '';
+        if(thingTodo) {
+            todos.addThingTodo(thingTodo)
+            input.value = ''
+        }
     }
 </script>
 
 <template>
-    <h1>1</h1>
-    <q-form @submit="onSubmit(input)">
+    <q-form class="todoForm" @submit="onSubmit(input)">
         <q-input
             v-model="input"
             label="Add thing todo!"
-            :rules="[val => val.length > 0 || 'Dont waist space on this list']"
+            filled
         />
         <q-btn
             label="Add"
             type="submit"
             color="primary"
+            unelevated
         />
     </q-form>
 </template>
 
 <style scoped>
-
+    .todoForm{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 </style>
