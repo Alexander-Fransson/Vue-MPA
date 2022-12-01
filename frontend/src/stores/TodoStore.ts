@@ -30,7 +30,7 @@ export const useTodoStore = defineStore('TodoStore', {
         async addThingTodo(thingTodo: string) {
 
             const body = {
-                id: this.getNewId,
+                id: await this.getNewId,
                 name: thingTodo,
                 done: false
             }
