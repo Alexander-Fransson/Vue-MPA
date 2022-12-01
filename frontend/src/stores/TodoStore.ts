@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 interface ITodo {
     id: number,
     name: string,
-    done: string
+    done: boolean
 }
 
 export const useTodoStore = defineStore('TodoStore', {
@@ -13,7 +13,12 @@ export const useTodoStore = defineStore('TodoStore', {
         }
     },
     getters: {
-        
+        getDone() : ITodo[] {
+            return this.thingsTodo.filter(item => item.done === true)
+        },
+        getYetToBeCompleted() : ITodo[] {
+            return this.thingsTodo.filter(item => item.done === false)
+        }
     },
     actions: {
         async refillStore() {
