@@ -10,6 +10,7 @@ export const useTodoStore = defineStore('TodoStore', {
     state: () => {
         return {
             thingsTodo: [] as ITodo[],
+            ids: [] as number[]
         }
     },
     getters: {
@@ -22,20 +23,26 @@ export const useTodoStore = defineStore('TodoStore', {
     },
     actions: {
         async refillStore() {
+            
             const req = await fetch('http://localhost:5097/api/TodoItems')
             const res = await req.json()
             this.thingsTodo = res;
-            console.log(JSON.stringify(this.thingsTodo))
         },
         async addThingTodo(thingTodo: string) {
 
+            let maxId: number = 1
+
+            if(this.thingsTodo.length){
+                maxId = this.thingsTodo.map(item => item.id).sort()[this.thingsTodo.length - 1] + 1
+            }
+
             const body = {
-                id: this.thingsTodo.length + 1,
+                id: maxId,
                 name: thingTodo,
                 done: false
             }
 
-            const req = await fetch('http://localhost:5097/api/TodoItems',{
+            await fetch('http://localhost:5097/api/TodoItems',{
                 method: 'POST',
                 headers: {
                     'accept':'text/plain',
@@ -44,9 +51,37 @@ export const useTodoStore = defineStore('TodoStore', {
                 body: JSON.stringify(body)
             })
 
-            const res = await req.json()
-            console.log(res)
             this.refillStore()
+        },
+        async removeThingTodo(id: number) {
+
+            await fetch(`http://localhost:5097/api/TodoItems/${id}`,{
+                method:'DELETE',
+                headers: {
+                    'accept':'*/*'
+                }
+            })
+
+            this.refillStore()
+        },
+        async changeTodo(id: number, name: string, completed: boolean) {
+
+            const body = JSON.stringify({
+                id: id,
+                name: name,
+                done: completed
+            })
+
+            await fetch(`http://localhost:5097/api/TodoItems/${id}`,{
+                method: 'PUT',
+                headers: {
+                    'accept': '*/*',
+                    'Content-Type': 'application/json',
+                },
+                body: body
+            })
+
+            this.refillStore();
         }
     }
 })

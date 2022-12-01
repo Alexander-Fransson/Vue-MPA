@@ -1,31 +1,35 @@
 <script setup lang="ts">
-    defineProps<{
-        id: number
+    import { useTodoStore } from '../stores/TodoStore'
+
+    const todos = useTodoStore()
+
+    const props = defineProps<{
+        Id: number
         name: string
         done: boolean
     }>()
 
     const remove = () => {
-        console.log('delete');
+        todos.removeThingTodo(props.Id)
     }
 
     const complete = () => {
-        console.log('completed')
+        todos.changeTodo(props.Id, props.name, !props.done)
     }
 </script>
 
 <template>
     <section class="container">
-        <p>{{name}}</p>
+        <p :class="{uncompletedTodo: !done, completedTodo: done}">{{name}}</p>
         <q-btn 
             @click="complete()"
             label="Y"
-            color="green"
+            color="pink-12"
         />
         <q-btn
             @click="remove()" 
             label="X"
-            color="red"
+            color="blue-3"
         />
     </section>
 </template>
@@ -36,8 +40,14 @@
         flex-direction: row;
         margin: auto;        
     }
-    p{
+    .uncompletedTodo{
         font-size: large;
+        padding: 1vw;
+        margin: 0vh;
+    }
+    .completedTodo{
+        font-size: large;
+        text-decoration: line-through;
         padding: 1vw;
         margin: 0vh;
     }

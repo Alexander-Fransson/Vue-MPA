@@ -6,9 +6,9 @@ useTodoStore().refillStore();
 </script>
 
 <template>
-    <RouterLink to="/">Menu </RouterLink>
+    <RouterLink to="/">Complete </RouterLink>
     <span>|</span>
-    <RouterLink to="/todo"> Todo</RouterLink>
+    <RouterLink to="/todo"> Left todo</RouterLink>
     <RouterView></RouterView>
 </template>
 
